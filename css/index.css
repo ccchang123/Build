@@ -1,0 +1,191 @@
+@keyframes WebLoad {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+body {
+    margin: 0;
+    animation: WebLoad 2s;
+}
+
+@font-face {
+    font-family: 'cwTeXYen';
+    src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff2) format('woff2');
+}
+
+.base {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#title {
+    height: 15vh;
+    font-size: calc(0.05 * 100vw);
+    font-family: cwTeXYen;
+    text-align: center;
+    letter-spacing: 10px;
+    background-color:rgba(60, 179, 243, 1);
+}
+
+#vote_form {
+    margin-top: 20px;
+    height: 10vh;
+}
+
+#vote_form form {
+    height: 7.5vh;
+    width: 80vw;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#vote_form form p,
+#vote_form form input[type="text"],
+#vote_form form select {
+    font-family: cwTeXYen;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#vote_form form input[type="submit"] {
+    margin-left: 10px;
+    padding: 5px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: rgb(243, 60, 60);
+}
+
+#reload {
+    align-items: flex-end;
+    margin-right: 10vw;
+}
+
+#reload button {
+    background-color: rgba(0, 140, 255, 1);
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+@keyframes rainbow {
+    0%{
+        text-shadow: 0 0 20px #fff, 0 0 100px #fff, 0 0 20px #fff;
+        color:red;
+    }
+    14.28% {
+        text-shadow: 0 0 20px #fff, 0 0 100px #fff, 0 0 20px #fff;
+        color:orange;
+    }
+    28.56% {
+        text-shadow: 0 0 20px #fff, 0 0 100px #fff, 0 0 20px #fff;
+        color:yellow;
+    }
+    42.84% {
+        text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+        color:green;
+    }
+    57.12% {
+        text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+        color:blue;
+    }
+    71.4% {
+        text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+        color:#4B0082;
+    }
+    85.68% {
+        text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+        color:purple;
+    }
+    100% {
+        text-shadow: 0 0 50px #fff, 0 0 150px #fff, 0 0 50px #fff;
+        color:white;
+    }
+}
+
+#tip {
+    height: 7vh;
+    font-size: 25px;
+    font-family: cwTeXYen;
+    background-color: rgba(14, 33, 44, 0.8);
+    animation: rainbow 7s ease-in-out infinite alternate;
+}
+
+#total_voted {
+    flex-direction: row;
+    font-size: 20px;
+}
+
+#total_voted font {
+    margin: 0 0.5vw;
+}
+
+.font {
+    color:red;
+}
+
+.vote_list {
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    flex-direction: row;
+    margin-bottom: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.vote_list img {
+    cursor: pointer;
+    border: 20px ridge #AA7700;
+    border-radius: 5px;
+    width: 20vw;
+    margin: 20px 50px 20px 0;
+}
+
+.vote_list div {
+    padding-left: 10px;
+    border-left: 1px solid black;
+    font-family: cwTeXYen;
+    font-size: 20px;
+    height: 20vw;
+    width: 55vw;
+    overflow-y: auto;
+}
+
+#vote_content {
+    font-size: 20px;
+    font-family: cwTeXYen;
+    width: 47.5vw;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+#move_to_top {
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.75vw;
+    background-color: rgba(60, 179, 243, 1);
+    position: fixed;
+    right: 2vw;
+    bottom: 2vw;
+}
+
+#move_to_top img {
+    height: 50px;
+}

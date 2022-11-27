@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/SingUp.css">
+    <title>建築大賽</title>
+</head>
+<body>
+    <div class="base" id="title">
+        建築大賽 報名網站
+    </div>
+    <div class="base" id="SingUp_form">
+        <form method="post" action="{{url_for('SingUp')}}" enctype="multipart/form-data">
+            <p>您的遊戲ID:</p>
+            <input type="text" placeholder="Minecraft ID" name="minecraft_id" required pattern="^\w+$">
+            <p>
+                上傳作品截圖: (可拖曳上傳，僅支援
+                <font class="font">PNG / JPG / JPEG</font>
+                )
+            </p>
+            <input type="file" name="file" accept=".png,.jpg" required>
+            <p>作品描述(選填): (最多
+                <font class="font">180</font>
+                個字)</p>
+            <textarea placeholder="您想說的話..." name="msg" maxlength="180", oninput="counter()"></textarea>
+            <p style="font-size: 15px;">
+                <font class="font" id="word_counter">
+                    0
+                </font>
+                / 180
+            </p>
+            <div>
+                <a href="/">返回首頁</a>
+                <input type="submit" value="報名">
+            </div>
+            <p style="color: red; text-align: end;">{{error_code}}</p>
+        </form>
+    </div>
+</body>
+<script src="../js/index.js"></script>
+</html>

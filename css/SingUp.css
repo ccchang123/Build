@@ -1,0 +1,75 @@
+#SingUp_form {
+    margin-top: 20px;
+    height: 85vh;
+}
+
+#SingUp_form form {
+    height: 75vh;
+    width: 80vw;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#SingUp_form form p,
+#SingUp_form form input[type="text"],
+#SingUp_form form input[type="file"],
+#SingUp_form form div input[type="submit"],
+#SingUp_form form div a,
+#SingUp_form form textarea {
+    width: 50%;
+    font-family: cwTeXYen;
+    margin-right: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#SingUp_form form input[type="text"] {
+    height: 30px;
+}
+
+#SingUp_form form input[type="file"] {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#SingUp_form form textarea {
+    height: 10vh;
+}
+
+#SingUp_form form div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+#SingUp_form form div a {
+    border: 2px solid black;
+    color: black;
+    text-decoration: none;
+}
+
+#SingUp_form form div a,
+#SingUp_form form div input[type="submit"] {
+    text-align: center;
+    margin-top: 10vh;
+    padding: 10px 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: rgba(60, 179, 243, 1);
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+#SingUp_form form div input[type="submit"] {
+    background-color: rgb(243, 60, 60);
+    margin-right: 10px;
+    margin-left: 30px;
+}

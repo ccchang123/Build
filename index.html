@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <title>建築大賽</title>
+</head>
+<body>
+    <div class="base" id="title">
+        建築大賽 投票網站
+    </div>
+    <div class="base" id="vote_form">
+        <form method="post" action="{{url_for('main')}}" onsubmit="return Check();">
+            <p>您的遊戲ID:</p>
+            <input type="text" placeholder="Minecraft ID" name="minecraft_id" required pattern="^\w+$">
+            <select name="support">
+                <option>請選擇...</option>
+                {% for item in participant %}
+                    <option>{{item[0]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="投票">
+        </form>
+        <p style="color: red">{{error_code}}</p>
+    </div>
+    <div class="base" id="reload">
+        <button onclick="window.location.reload();">
+            ⟳重新整理
+        </button>
+    </div>
+    <p class="base" id="tip">Tip: 點擊圖片可看大圖</p>
+    <div class="base" id="total_voted">
+        總參加人數:
+        <font class="font">
+            {{ participant|length() }}
+        </font>   
+        總投票人數:
+        <font class="font">
+            {{ voted|length() }}
+        </font>     
+    </div>
+    <div class="base" style="margin-top: 30px;">
+        {% for item in participant %}
+            <div class="vote_list">
+                <img src="/assets/{{item[0]}};{{item[1]}}.png" id="get_img_height" onclick="window.open('/assets/{{item[0]}};{{item[1]}}.png', 'Image', config='height=1080,width=1920');">
+                <div>
+                    作者: <font class="font">{{item[0]}}</font>
+                    <br>
+                    說明: 
+                    <br>
+                    <textarea readonly class="font" id="vote_content">{% for line in item[1].split('$n$') %}{{ line }}
+{% endfor %}</textarea>
+                    <br>
+                    當前總票數: <font class="font">{{ log[item[0]]|length() }}</font>
+                    <br>
+                    支持者:
+                    <br>
+                    {% for supporter in log[item[0]] %}
+                        {{supporter}}
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="move_to_top" onclick="move_to_top()">
+        <img src="https://static.thenounproject.com/png/269054-200.png" title="移至頂端">
+    </div>
+</body>
+<script src="js/index.js"></script>
+</html>
