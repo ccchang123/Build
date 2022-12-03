@@ -29,7 +29,16 @@
                 </font>
                 / 180
             </p>
-            <div>
+            <div id="SingUp_form_CheckBox">
+                <input type="checkbox" name="agree_notice" required value="agree">
+                <label>
+                    我已詳細閱讀且同意
+                    <font class="font" id="notice" onclick="show_notice()">
+                        注意事項
+                    </font>
+                </label>
+            </div>
+            <div id="SingUp_form_Button">
                 <a href="/">返回首頁</a>
                 <input type="submit" value="報名">
             </div>

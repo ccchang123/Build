@@ -41,7 +41,25 @@
     height: 10vh;
 }
 
-#SingUp_form form div {
+#SingUp_form_CheckBox {
+    width: 50%;
+}
+
+#SingUp_form_CheckBox input[type="checkbox"] {
+    width: auto;
+    height: auto;
+}
+
+#notice { 
+    text-decoration: underline;
+} 
+
+#notice:hover { 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#SingUp_form_Button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -49,14 +67,14 @@
     width: 50%;
 }
 
-#SingUp_form form div a {
+#SingUp_form_Button a {
     border: 2px solid black;
     color: black;
     text-decoration: none;
 }
 
-#SingUp_form form div a,
-#SingUp_form form div input[type="submit"] {
+#SingUp_form_Button a,
+#SingUp_form_Button input[type="submit"] {
     text-align: center;
     margin-top: 10vh;
     padding: 10px 0 10px;
@@ -68,7 +86,7 @@
     margin-left: 10px;
 }
 
-#SingUp_form form div input[type="submit"] {
+#SingUp_form_Button input[type="submit"] {
     background-color: rgb(243, 60, 60);
     margin-right: 10px;
     margin-left: 30px;
