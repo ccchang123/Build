@@ -46,6 +46,7 @@ def after_request(response):
 @app.route('/index.html', methods=['GET','POST'])
 def main():
     if request.method == 'GET':
+        participant.sort(key= lambda x: len(log[x[0]]), reverse=True)
         return render_template(
             'index.html',
             participant = participant,
@@ -70,7 +71,6 @@ def main():
                 with open('voted_ip.txt', 'a', encoding='utf-8') as file:
                         file.write(f'{ip}\n')
                 logging.info(f'{request.form["minecraft_id"]} Voted For {request.form["support"]}, Comment: {request.form["msg"]}, Total votes: {len(log[request.form["support"]])}')
-                participant.sort(key= lambda x: len(log[x[0]]), reverse=True)
                 return redirect(url_for('main'))
             else:
                 return render_template('index.html', participant = participant, error_code = '此IP已投過票', log = log, voted = voted)
@@ -101,7 +101,6 @@ def SingUp():
                     json.dump(log, f, indent = 4)
             file.save(os.path.join('assets', filename))
             participant.append(filename[0:-4].split(';'))
-            participant.sort(key= lambda x: len(log[x[0]]), reverse=True)
             img = Image.open(f'assets/{filename}')
             icon = Image.open('watermark.png')
             img_w, img_h = img.size
