@@ -1,3 +1,5 @@
+{% extends "html/base.html" %}
+{% block main %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +7,47 @@
     <link rel="stylesheet" href="../css/SingUp.css">
     <title>建築大賽</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="../js/jquery.snow.v3.js"></script>
 <body>
+    <div class="notice base" onclick="unshow_notice()">
+        <div>
+            <ol>
+                <li>
+                    比賽獎品:
+					<ul>
+						<li>第一名🥇：以你的名義贊助3000元</li>
+						<li>第二名🥈：地圖畫x2 + 2000w遊戲幣</li>
+						<li>第三名🥉：地圖畫x1 + 1000w遊戲幣</li>
+						<li>安慰獎😥：5w遊戲幣</li>
+					</ul>
+                </li>
+                <li>
+					上傳說明:
+					<ul>
+						<li>請挑選一張你覺得最好看、最適合參賽的圖片上傳</li>
+						<li>每位參賽者僅限上傳一次</li>
+						<li>僅限先前有報名此活動者上傳</li>
+						<li>僅限上傳一張，其檔案類型只支援PNG/JPG/JPEG</li>
+						<li>上傳期限: 2022/12/05 22:00:00 ~ 2022/12/12 22:00:00</li>
+						<li>逾期上傳者視同放棄參加本活動，無法領取任何獎品</li>
+					</ul>
+                </li>
+                <li>
+                    圖片一經上傳，即代表您同意授權本網站使用您的圖片。 
+                </li>
+                <li>
+                    本網站及系統僅作為輔助之使用，不負一切法律責任。
+                </li>
+            </ol>
+			<p style="margin-top: 50px; animation: black-red 1s ease-in-out infinite alternate;">點擊任意處以繼續</p>
+        </div>
+    </div>
     <div class="base" id="title">
         建築大賽 報名網站
     </div>
     <div class="base" id="SingUp_form">
-        <form method="post" action="{{url_for('SingUp')}}" enctype="multipart/form-data">
+        <form method="post" action="{{url_for('SingUp')}}" enctype="multipart/form-data" onsubmit="return confirm_SingUp();">
             <p>您的遊戲ID:</p>
             <input type="text" placeholder="Minecraft ID" name="minecraft_id" required pattern="^\w+$">
             <p>
@@ -18,18 +55,18 @@
                 <font class="font">PNG / JPG / JPEG</font>
                 )
             </p>
-            <input type="file" name="file" accept=".png,.jpg" required>
+            <input type="file" name="file" accept=".png,.jpg,.jpeg" required>
             <p>作品描述(選填): (最多
-                <font class="font">180</font>
+                <font class="font">120</font>
                 個字)</p>
-            <textarea placeholder="您想說的話..." name="msg" maxlength="180", oninput="counter()"></textarea>
+            <textarea placeholder="您想說的話..." name="msg" maxlength="120", oninput="counter()"></textarea>
             <p style="font-size: 15px;">
                 <font class="font" id="word_counter">
                     0
                 </font>
-                / 180
+                / 120
             </p>
-            <div id="SingUp_form_CheckBox">
+			<div id="SingUp_form_CheckBox">
                 <input type="checkbox" name="agree_notice" required value="agree">
                 <label>
                     我已詳細閱讀且同意
@@ -48,3 +85,4 @@
 </body>
 <script src="../js/index.js"></script>
 </html>
+{% endblock %}

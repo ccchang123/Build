@@ -10,6 +10,10 @@
 body {
     margin: 0;
     animation: WebLoad 2s;
+	background-image: url(../assets/res/background.png);
+	background-color: rgba(255, 255, 255, 0.1);
+	background-attachment: fixed;
+	background-blend-mode: screen;
 }
 
 @font-face {
@@ -24,7 +28,8 @@ body {
     flex-direction: column;
 }
 
-.notice {
+.notice,
+.show_rank {
     animation: WebLoad 1.5s;
     position: fixed;
     height: 100vh;
@@ -36,13 +41,14 @@ body {
     flex-direction: column;
 }
 
-.notice div {
+.notice div,
+.show_rank div {
     background-color: rgba(228, 228, 228, 0.8);
     border: 2px solid black;
     border-radius: 20px;
     position: fixed;
     width: 75vw;
-    height: 50vh;
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,22 +60,53 @@ body {
     margin-bottom: 10px;
 }
 
+.show_rank div {
+	padding: 10% 0;
+    height: 45%;
+	overflow: auto;
+}
+
+.show_rank div table {
+	width: 65%;
+    border-collapse: collapse;
+	overflow: auto;
+	border-left: 5px double black;
+	border-right: 5px double black;
+}
+
+.show_rank div table tr:nth-of-type(odd){
+	background-color: rgba(218, 218, 218, 1);
+}
+
+.show_rank div table tr:nth-of-type(even){
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.show_rank div table tr:nth-of-type(1){
+	background-color: orange;
+}
+
+.show_rank div table td {
+	font-size: 25px;
+}
+
 #title {
     height: 15vh;
     font-size: calc(0.05 * 100vw);
     font-family: cwTeXYen;
     text-align: center;
     letter-spacing: 10px;
-    background-color:rgba(60, 179, 243, 1);
+    background-color: rgba(60, 179, 243, 0.5);
 }
 
 #vote_form {
     margin-top: 20px;
-    height: 10vh;
+    height: 15vh;
 }
 
 #vote_form form {
-    height: 7.5vh;
+	background-color: rgba(255, 255, 255, 0.5);
+    height: 12.5vh;
     width: 80vw;
     border: 2px solid black;
     border-radius: 10px;
@@ -79,21 +116,25 @@ body {
     flex-direction: row;
 }
 
-#vote_form form p,
 #vote_form form input[type="text"],
 #vote_form form select {
+	height: 30%;
     font-family: cwTeXYen;
     margin-right: 15px;
     font-size: 20px;
 }
 
 #vote_form form input[type="submit"] {
-    margin-left: 10px;
+    margin-left: 15px;
     padding: 5px 30px;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: not-allowed;
     font-size: 20px;
     background-color: rgb(243, 60, 60);
+}
+
+#vote_form form input[type="text"] {
+	width: 12vw;
 }
 
 #reload {
@@ -119,7 +160,7 @@ body {
 }
 
 @keyframes rainbow {
-    0% {
+    0%{
         text-shadow: 0 0 20px #fff, 0 0 100px #fff, 0 0 20px #fff;
         color: red;
     }
@@ -162,6 +203,7 @@ body {
 }
 
 #total_voted {
+	color: rgba(255, 255, 255, 1);
     flex-direction: row;
     font-size: 20px;
 }
@@ -170,17 +212,27 @@ body {
     margin: 0 0.5vw;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+.underline:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .font {
-    color:red;
+    color: red;
 }
 
 .vote_list {
+	background-color: rgba(255, 255, 255, 0.5);
     width: 75vw;
     display: flex;
     align-items: center;
     justify-content:flex-start;
     flex-direction: row;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10px 20px;
@@ -216,11 +268,11 @@ body {
 
 .td2 {
     border-left: 2px solid black;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 
 tr:nth-of-type(even) {
-    background-color: rgba(208, 208, 208, 1);
+    background-color: rgba(198, 198, 198, 1);
 }
 
 #vote_content {
@@ -234,18 +286,31 @@ tr:nth-of-type(even) {
     margin-bottom: 5px;
 }
 
+#gift {
+    position: fixed;
+	bottom: 0;
+	z-index: 10;
+	
+}
+#gift img {
+	width: 298px;
+	height: 110px;
+}
+
 #move_to_top {
+	z-index: 10;
     cursor: pointer;
     border-radius: 50%;
-    padding: 0.75vw;
+    padding: 0.6vw;
     background-color: rgba(60, 179, 243, 1);
     position: fixed;
     right: 2vw;
     bottom: 2vw;
+    width: 65px;
 }
 
 #move_to_top img {
-    height: 50px;
+    height: 65px;
 }
 
 .first {
@@ -263,4 +328,30 @@ tr:nth-of-type(even) {
 .rank_img {
     position: absolute;
     left: 5vw;
+}
+
+#copyright {
+    padding: 32px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: #1d242a;
+    text-align: center;
+    font-size: 11px;
+    font-family: cwTeXYen;
+    position: relative;
+}
+
+#copyright div a {
+    text-decoration: none;
+}
+
+#copyright .copyright_link {
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+#copyright .copyright_link:hover {
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 5px;
+    text-decoration: underline;
 }

@@ -4,6 +4,7 @@
 }
 
 #SingUp_form form {
+	background-color: rgba(255, 255, 255, 0.5);
     height: 75vh;
     width: 80vw;
     border: 2px solid black;
@@ -28,6 +29,7 @@
 }
 
 #SingUp_form form input[type="text"] {
+	border: 1px solid black;
     height: 30px;
 }
 
@@ -38,6 +40,7 @@
 }
 
 #SingUp_form form textarea {
+	border: 1px solid black;
     height: 10vh;
 }
 

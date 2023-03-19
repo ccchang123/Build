@@ -1,46 +1,82 @@
+{% extends "html/base.html" %}
+{% block main %}
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="css/index.css">
     <title>建築大賽</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="js/jquery.snow.v3.js"></script>
 <body>
     <div class="notice base" onclick="unshow_notice()">
         <div>
             <ol>
                 <li>
-                    一個IP、一個ID僅限投票一次
+                    比賽獎品:
+					<ul>
+						<li>第一名🥇：以你的名義贊助3000元</li>
+						<li>第二名🥈：地圖畫x2 + 2000w遊戲幣</li>
+						<li>第三名🥉：地圖畫x1 + 1000w遊戲幣</li>
+						<li>安慰獎😥：5w遊戲幣</li>
+					</ul>
                 </li>
                 <li>
-                    投票期限: 2022/12/12 22:00:00 ~ 2022/12/13 22:00:00
+					投票說明:
+					<ul>
+						<li>請挑選一張你覺得最好看、最佳的構圖者進行投票</li>
+						<li>一個IP、一個ID僅限投票一次</li>
+						<li>投票期限: 2022/12/12 22:00:00 ~ 2022/12/15 22:00:00</li>
+						<li>逾期投票者視同放棄參加本活動</li>
+					</ul>
                 </li>
                 <li>
                     本網站及系統僅作為輔助之使用，不負一切法律責任。
                 </li>
             </ol>
-            <p style="margin-top: 50px; animation: black-red 1s ease-in-out infinite alternate;">點擊任意處以繼續</p>
+			<p style="margin-top: 50px; animation: black-red 1s ease-in-out infinite alternate;">點擊任意處以繼續</p>
         </div>
     </div>
+    <div class="show_rank base" onclick="unshow_rank()">
+		<div>
+			<table cellpadding="8">
+					<tr>
+						<td>參賽者</td>
+						<td>總票數</td>
+					</tr>
+				{% for item in participant %}
+					<tr>
+						<td>{{item[0]}}</td>
+						<td>{{ log[item[0]]|length() }}</td>
+					</tr>
+				{% endfor %}
+					<tr style="background-color: orange;">
+						<td>Total</td>
+						<td>{{ voted|length() }}</td>
+					</tr>
+			</table>
+		</div>
+	</div>
     <div class="base" id="title">
         建築大賽 投票網站
     </div>
     <div class="base" id="vote_form">
-        <form method="post" action="{{url_for('main')}}" onsubmit="return Check();">
-            <p>您的遊戲ID:</p>
-            <input type="text" placeholder="Minecraft ID" name="minecraft_id" required pattern="^\w+$">
+        <form method="post" action="{{url_for('main')}}" onsubmit="return comfirm_submit();">
+            <input type="text" placeholder="Minecraft ID" name="minecraft_id" required pattern="^\w+$" oninput="check_value()">
             <select name="support">
                 <option>請選擇...</option>
                 {% for item in participant %}
                     <option>{{item[0]}}</option>
                 {% endfor %}
             </select>
-            <input type="text" placeholder="簡評" name="msg" maxlength="8">
-            <input type="submit" value="投票">
+            <input type="text" placeholder="簡評" name="msg" maxlength="30">
+			<div class="g-recaptcha" data-sitekey="6LdSC14hAAAAAC44k7jtnv0hHTPdBOD2l7cpP9Ij"></div>
+			<input type="submit" value="投票">
         </form>
         <p style="color: red">{{error_code}}</p>
     </div>
     <div class="base" id="reload">
-        <button onclick="window.location.reload();">
+        <button onclick="window.location.href = '/'">
             ⟳重新整理
         </button>
     </div>
@@ -53,7 +89,10 @@
         總投票人數:
         <font class="font">
             {{ voted|length() }}
-        </font>     
+        </font>
+		<font class="font underline" onclick="show_rank()">
+			當前排名狀態
+		</font>
     </div>
     <div class="base" style="margin-top: 30px;">
         {% for item in participant %}
@@ -71,21 +110,26 @@
                     <br>
                     支持者:
                     <br>
-                    <table class="vote_table">
+					<table class="vote_table">
                         {% for supporter in log[item[0]] %}
                             <tr>
-                                <td class="td1">{{ supporter[0] }}</td>
-                                <td class="td2">{{ supporter[1] }}</td>
+                                <td class="td1">{{supporter[0]}}</td>
+                                <td class="td2">{{supporter[1]}}</td>
                             </tr>
                         {% endfor %}
                     </table>
-                </div>
+				</div>
             </div>
         {% endfor %}
     </div>
-    <div id="move_to_top" onclick="move_to_top()">
-        <img src="https://static.thenounproject.com/png/269054-200.png" title="移至頂端">
+    <div class="base" id="gift">
+		<img src="assets/res/gift.png">
+    </div>
+    <div class="base" id="move_to_top" onclick="move_to_top()">
+		<img src="assets/res/image.png" title="移至頂端">
     </div>
 </body>
 <script src="js/index.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </html>
+{% endblock %}
